@@ -9,22 +9,27 @@
 class Calculator:
 
     def validator(self, num1, num2):
-        try:
-            if type(num1) == int and type(num2) == int:
-                return num1, num2
-        except (TypeError, ValueError):
-            return 'Переменная не соответствуют числовому типу'
+        is_valid_num1_numbers = isinstance(num1, int) or isinstance(num1, float)
+        is_valid_num2_numbers = isinstance(num2, int) or isinstance(num2, float)
+        if is_valid_num1_numbers and is_valid_num2_numbers:
+            return num1, num2
+        else:
+            raise Exception('Not valid')
 
     def addition(self, num1, num2):
+        self.validator(num1, num2)
         return num1 + num2
 
     def subtraction(self, num1, num2):
+        self.validator(num1, num2)
         return num1 - num2
 
     def multiplication(self, num1, num2):
+        self.validator(num1, num2)
         return num1 * num2
 
     def division(self, num1, num2):
+        self.validator(num1, num2)
         try:
             return num1 / num2
         except ZeroDivisionError:
@@ -41,14 +46,12 @@ while True:
         break
 
     num1 = 2
-    num2 = '2'
-    if calculator.validator(num1, num2):
-        if select_of_operation == 1:
-            print(f'Результат: {calculator.addition(num1, num2)}\n')
-        elif select_of_operation == 2:
-            print(f'Результат: {calculator.subtraction(num1, num2)}\n')
-        elif select_of_operation == 3:
-            print(f'Результат: {calculator.multiplication(num1, num2)}\n')
-        elif select_of_operation == 4:
-            print(f'Результат: {calculator.division(num1, num2)}\n')
-
+    num2 = 5
+    if select_of_operation == 1:
+        print(f'Результат: {calculator.addition(num1, num2)}\n')
+    elif select_of_operation == 2:
+        print(f'Результат: {calculator.subtraction(num1, num2)}\n')
+    elif select_of_operation == 3:
+        print(f'Результат: {calculator.multiplication(num1, num2)}\n')
+    elif select_of_operation == 4:
+        print(f'Результат: {calculator.division(num1, num2)}\n')
